@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block titulo %}  Gestor de Usuarios {% endblock %}
+
+{% block contenido %}
+{% load static %}
+<!-- manage_users.html -->
+
+    <table class="table" id="miTabla"> 
+       <h1>Tabla de Usuarios</h1> 
+        <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a href="{% url 'manage_users' user.pk %}" class="btn btn-sm btn-outline-secondary mr-2">Editar</a>
+                    
+                        {% csrf_token %}
+                    <a href="{% url 'manage_users' user.pk %}"  class="btn btn-sm btn-outline-danger" name="delete">Borrar</a>
+                    
+                    
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    
+
+
+{% endblock %}

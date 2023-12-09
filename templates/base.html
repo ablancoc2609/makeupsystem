@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block titulo %} Cambiar Titulo {% endblock %}</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  </head>
+  <body>
+    
+    <div class="container-sc roller">
+      <!-- partial:{% staticpartials/_sidebar.html -->
+       
+        {% include 'menus/topbar.html' %}
+      
+        
+       
+      <!-- partial -->
+      <div class="container-fl uid page-body-wrapper">
+        
+       
+        <!-- partial:{% staticpartials/_navbar.html -->
+          {% if user.is_superuser %}
+        {% include 'menus/sidebaradmin.html'%}
+        {% else %}
+        {% include 'menus/sidebaruser.html'%}
+        {% endif %} 
+        <!-- partial -->
+        <div class="main-panel">
+          
+          <div class="content-wrapper">
+            
+            {% block contenido %}
+            {% endblock %}
+            
+          </div>
+          <!-- content-wrapper e nds -->
+          <div class="container-fluid">
+            
+            
+            <!-- Page Heading -->
+            
+
+          </div>
+       
+          <!-- partial:{% staticpartials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © MakeupSystem 2023</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      
+      <!-- page-body-wrapper ends -->
+    
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'js/off-canvas.js' %}"></script>
+    <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'js/misc.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+        <!-- Logout Modal -->
+    
+  </body>
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Estas Seguro?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-danger" href="{% url 'logout' %}">Cerrar Sesion</a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
